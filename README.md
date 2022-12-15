@@ -1,1 +1,49 @@
 ## Django Starter Project
+
+Create Virtual Environment
+
+- if windows
+
+    ```bash
+    python -m venv .venv
+    ```
+
+- if mac or linux
+
+    ```bash
+    python3 -m venv .venv
+    ```
+
+Activate Virtual Environment
+
+- if windows
+
+    ```bash
+    .venv\Scripts\activate
+    ```
+
+
+- if mac or linux
+
+    ```bash
+    source .venv/bin/activate
+    ```
+
+- if you want to deactivate
+
+    ```bash
+    deactivate
+    ```
+
+Install Django
+    
+```bash 
+pip install django
+```
+
+Create Django Project
+
+```bash
+django-admin startproject <project_name>
+```
+
