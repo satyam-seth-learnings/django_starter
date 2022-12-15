@@ -19,7 +19,7 @@ Activate Virtual Environment
 - if windows
 
     ```bash
-    .venv\Scripts\activate
+    source .venv/Scripts/activate
     ```
 
 
@@ -47,3 +47,8 @@ Create Django Project
 django-admin startproject <project_name>
 ```
 
+Run Django Project
+
+```bash
+python manage.py runserver
+```
