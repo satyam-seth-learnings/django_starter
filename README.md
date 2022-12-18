@@ -108,4 +108,19 @@ Setup Pylint
 pylint --load-plugins=pylint_django --django-settings-module=<project_name>.settings **/*.py
 ```
 
-- If you are using vscode, you can install pylint extension and it will automatically run pylint on save
+- If you are using vscode, you can install pylint extension and it will automatically run pylint on save. for that you need to add this in settings.json
+
+    ```json
+    {
+        {
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.pylintArgs": [
+            "--load-plugins",
+            "pylint_django",
+            "--django-settings-module=<project_name>.settings"
+        ]
+    }
+    ```
+
+    [Setup Reference Links](https://dkolodzey.medium.com/pylint-for-django-in-vscode-f3fadb8462d)
