@@ -52,3 +52,31 @@ Run Django Project
 ```bash
 python manage.py runserver
 ```
+
+Setup pylint
+
+- install pylint
+
+    ```bash
+    pip install pylint
+    ```
+
+- install pylint-django plugin
+
+    ```bash
+    pip install pylint-django
+    ```
+
+- create .pylintrc file
+
+    ```bash
+    pylint --generate-rcfile > .pylintrc
+    ```
+
+- add this to .pylintrc file
+
+    ```bash
+    [MASTER]
+    load-plugins=pylint_django
+    ```
+[]: #     ```
