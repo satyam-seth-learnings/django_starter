@@ -64,7 +64,7 @@ Setup Pylint
         - Blog: [How to setup pylint for django project](https://dkolodzey.medium.com/pylint-django-with-github-actions-2e3ef05dd34a)
 
 
-- Install pylint
+- Install pylint for code analysis and linting
 
     ```bash
     pip install pylint
@@ -124,3 +124,38 @@ pylint --load-plugins=pylint_django --django-settings-module=<project_name>.sett
     ```
 
     [Setup Reference Links](https://dkolodzey.medium.com/pylint-for-django-in-vscode-f3fadb8462d)
+
+Setup Black for code formatting
+
+- Reference Links
+    
+        - [black](https://black.readthedocs.io/en/stable/)
+        - [Blog Link](https://ctrlzblog.com/how-to-set-up-black-to-automatically-format-your-django-project/)
+
+- Install black
+
+    ```bash
+    pip install black
+    ```
+
+- Run black
+
+    ```bash
+    black .
+    ```
+
+- Check black formatting
+
+    ```bash
+    black --check .
+    ```
+
+- If you are using vscode, you need to add this in settings.json
+
+    ```json
+    {
+        "editor.formatOnSave": true,
+        "python.formatting.provider": "black",
+    }
+    ```
+    
