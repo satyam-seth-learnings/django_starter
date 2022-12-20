@@ -82,6 +82,10 @@ Setup Pylint
     pylint --generate-rcfile > .pylintrc
     ```
 
+- Or use [google style guide](https://google.github.io/styleguide/pyguide.html)
+
+    [pylintrc file](https://google.github.io/styleguide/pylintrc)
+
 - Add pylint_django in load-plugins to pylint config file
 
     ```text
@@ -158,4 +162,3 @@ Setup Black for code formatting
         "python.formatting.provider": "black",
     }
     ```
-    
