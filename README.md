@@ -57,11 +57,11 @@ Setup Pylint
 
 - Reference Links
     
-        - [pylint](https://github.com/PyCQA/pylint/)
-    
-        - [pylint-django](https://github.com/PyCQA/pylint-django/)
+    - [pylint](https://github.com/PyCQA/pylint/)
 
-        - Blog: [How to setup pylint for django project](https://dkolodzey.medium.com/pylint-django-with-github-actions-2e3ef05dd34a)
+    - [pylint-django](https://github.com/PyCQA/pylint-django/)
+
+    - Blog: [How to setup pylint for django project](https://dkolodzey.medium.com/pylint-django-with-github-actions-2e3ef05dd34a)
 
 
 - Install pylint for code analysis and linting
@@ -82,9 +82,9 @@ Setup Pylint
     pylint --generate-rcfile > .pylintrc
     ```
 
-- Or use [google style guide](https://google.github.io/styleguide/pyguide.html)
+<!-- - Or use [google style guide](https://google.github.io/styleguide/pyguide.html)
 
-    [pylintrc file](https://google.github.io/styleguide/pylintrc)
+    [pylintrc file](https://google.github.io/styleguide/pylintrc) -->
 
 - Add pylint_django in load-plugins to pylint config file
 
