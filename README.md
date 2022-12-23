@@ -221,3 +221,53 @@ TODO - Do research on this is it required or not
         ]
     }
     ```
+
+Setup isort for sorting imports
+
+- Reference Links
+    
+    - [isort](https://pycqa.github.io/isort/)
+    - [github wiki](https://github.com/PyCQA/isort/wiki/isort-Settings)
+
+- Install isort
+    
+    ```bash
+    pip install isort
+    ```
+
+- Run isort
+    
+    ```bash
+    isort .
+    ```
+
+- Check isort
+
+    ```bash
+    isort --check .
+    ```
+
+- If want to customize isort, you can create isort config file `isort.cfg`
+
+    ```text
+    [settings]
+    verbose = true
+    skip_glob = **/migrations/*.py
+    ```
+
+- NOTE: supported options are [here](https://pycqa.github.io/isort/docs/configuration/options.html)
+
+
+- If you are using vscode, you need to add this in settings.json
+
+    ```json
+    {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "isort.args": [
+            "skip_glob",
+            "*/migrations/*",
+        ],
+    }
+    ```
