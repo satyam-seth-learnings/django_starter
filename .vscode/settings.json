@@ -12,4 +12,5 @@
         "pylint_django",
         "django-settings-module=django_starter.settings",
     ],
+    "python.linting.mypyEnabled": true,
 }

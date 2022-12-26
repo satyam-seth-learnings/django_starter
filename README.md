@@ -169,7 +169,7 @@ Setup mypy for static type checking
 - Reference Links
     
         - [mypy](https://mypy.readthedocs.io/en/stable/)
-        - [Blog Link](https://www.ralphminderhoud.com/blog/django-mypy-check-runs)
+        - [django-stubs github repo](https://github.com/typeddjango/django-stubs)
 
 - Install mypy
     
@@ -183,44 +183,44 @@ Setup mypy for static type checking
         pip install django-stubs
         ```
 
-TODO - Do research on this is it required or not
 - Note this is not required in current case, but if you are using django models, you need to install django-stubs
-    - [PTAL Reference Github link](https://github.com/sodiqit/django-news-blog/commit/5ce14c7ae44680833f6581dbbaf2242211ecba12)
+    - [mypy config docs](https://mypy.readthedocs.io/en/latest/config_file.html)
+    - [Stack Overflow Reference](https://stackoverflow.com/questions/59031982/type-annotations-for-django-models)
 
     - Add django-stubs in plugins in mypy config file `mypy.ini`
         
-            ```text
-            [mypy]
-            plugins = django-stubs
-            ```
+        ```text
+        [mypy]
+        plugins = mypy_django_plugin.main
+        ```
+
     - Add django settings module in mypy config file `mypy.ini`
         
-            ```text
-            [mypy]
-            django_settings_module = <project_name>.settings
-            ```
+        ```text
+        [mypy.plugins.django-stubs]
+        django_settings_module = <project_name>.settings
+        ```
 
 - Run mypy
     
-        ```bash
-        mypy .
-   
-        ```
+    ```bash
+    mypy .
+
+    ```
 
 
-TODO - Do research on this is it required or not
 - If you are using vscode, you need to add this in settings.json
 
     ```json
     {
         "python.linting.mypyEnabled": true,
         "python.linting.mypyArgs": [
-            "--ignore-missing-imports",
-            "--follow-imports=silent",
-            "--show-column-numbers"
+            "--strict",
         ]
     }
     ```
+
+- [Reference Blog](https://dev.to/jodaut/python-type-checking-with-visual-studio-code-46a7)
 
 Setup isort for sorting imports
 
