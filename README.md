@@ -34,7 +34,7 @@
   deactivate
   ```
 
-3. Setup Django project with app
+3. Setup Django project
 
 - Install Django package
 
@@ -52,4 +52,21 @@
 
   ```sh
   django-admin startproject <project-name> .
+  ```
+
+4. Setup Django app
+
+- Start Django app 
+
+  ```sh
+  python3 manage.py startapp <app-name>
+  ```
+
+- Install Django app in project setting
+
+  ```python
+  INSTALLED_APPS = [
+    ...,
+    '<app-name>',
+  ]
   ```
