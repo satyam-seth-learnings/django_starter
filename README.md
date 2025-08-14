@@ -47,3 +47,9 @@
   ```sh
   pip freeze | grep Django > requirements.txt
   ```
+
+- Start Django project
+
+  ```sh
+  django-admin startproject <project-name> .
+  ```
