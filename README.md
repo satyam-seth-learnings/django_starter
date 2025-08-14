@@ -33,3 +33,9 @@
   ```bash
   deactivate
   ```
+
+3. Install django package
+
+  ```sh
+  pip install django
+  ```
