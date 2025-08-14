@@ -84,3 +84,9 @@
   ```sh
   python3 manage.py migrate
   ```
+
+6. Run unit tests
+
+  ```sh
+  python3 manage.py test
+  ```
