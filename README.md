@@ -70,3 +70,17 @@
     '<app-name>',
   ]
   ```
+
+5. Setup Django Model
+
+- Generate migration file for model
+
+  ```sh
+  python3 manage.py makemigrations
+  ```
+
+- Apply migration
+
+  ```sh
+  python3 manage.py migrate
+  ```
