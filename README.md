@@ -34,8 +34,16 @@
   deactivate
   ```
 
-3. Install django package
+3. Setup Django project with app
+
+- Install Django package
 
   ```sh
-  pip install django
+  pip install Django
+  ```
+
+- Add installed Django package to requirements file
+
+  ```sh
+  pip freeze | grep Django > requirements.txt
   ```
