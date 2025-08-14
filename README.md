@@ -33,3 +33,23 @@
   ```bash
   deactivate
   ```
+
+3. Setup Django project with app
+
+- Install Django package
+
+  ```sh
+  pip install Django
+  ```
+
+- Add installed Django package to requirements file
+
+  ```sh
+  pip freeze | grep Django > requirements.txt
+  ```
+
+- Start Django project
+
+  ```sh
+  django-admin startproject <project-name> .
+  ```
