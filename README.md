@@ -113,3 +113,35 @@
     'rest_framework',
   ]
   ```
+
+8. Setup Test Coverage
+
+- Install Coverage package
+
+  ```sh
+  pip install coverage
+  ```
+
+- Add installed Coverage package to requirements file
+
+  ```sh
+  pip freeze | grep coverage >> requirements.txt 
+  ```
+
+- Run tests with coverage
+
+  ```sh
+  coverage run manage.py test
+  ```
+
+- See coverage report on terminal
+
+  ```sh
+  coverage report
+  ```
+
+- Generate HTML report
+
+  ```sh
+  coverage html
+  ```
