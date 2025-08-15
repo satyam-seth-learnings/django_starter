@@ -224,6 +224,8 @@
   force-exclude = "/migrations/"
   ```
 
+- Note:- black official [doc](https://black.readthedocs.io/en/stable/getting_started.html)
+
 - Fix formatting using black
 
   ```sh
