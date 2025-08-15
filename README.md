@@ -202,3 +202,30 @@
   ```sh
   mypy .
   ```
+
+10. Setup black
+
+- Install black package
+
+  ```sh
+  pip install black
+  ```
+
+- Add installed black package to requirements file
+
+  ```sh
+  pip freeze | grep black >> requirements.txt 
+  ```
+
+- Add black config in `puproject.toml` file
+
+  ```toml
+  [tool.black]
+  force-exclude = "/migrations/"
+  ```
+
+- Fix formatting using black
+
+  ```sh
+  black .
+  ```

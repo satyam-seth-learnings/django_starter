@@ -4,6 +4,7 @@ from datetime import date
 
 # Create your tests here.
 
+
 class StudentModelTest(TestCase):
     def setUp(self):
         self.student = Student.objects.create(
@@ -16,8 +17,8 @@ class StudentModelTest(TestCase):
 
         self.assertEqual(self.student.first_name, "John")
         self.assertEqual(self.student.last_name, "Doe")
-        
+
     def test_str_method(self):
         """Test the __str__ method of the Student model."""
-        
+
         self.assertEqual(str(self.student), "John Doe")

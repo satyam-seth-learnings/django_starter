@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Student(models.Model):
     """Student Model"""
 
@@ -10,5 +11,5 @@ class Student(models.Model):
 
     def __str__(self):
         """Student string representation"""
-        
+
         return f"{self.first_name} {self.last_name}"
