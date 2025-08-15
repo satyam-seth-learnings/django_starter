@@ -145,3 +145,60 @@
   ```sh
   coverage html
   ```
+
+9. Setup MyPy
+
+- Install MyPy package
+
+  ```sh
+  pip install mypy
+  ```
+
+- Add installed mypy package to requirements file
+
+  ```sh
+  pip freeze | grep mypy== >> requirements.txt 
+  ```
+
+- Install django stubs package
+
+  ```sh
+  pip install django-stubs
+  ```
+
+- Add installed django stubs package to requirements file
+
+  ```sh
+  pip freeze | grep django-stubs== >> requirements.txt 
+  ```
+
+- Install drf stubs package
+
+  ```sh
+  pip install djangorestframework-stubs
+  ```
+
+- Add installed drf stubs package to requirements file
+
+  ```sh
+  pip freeze | grep djangorestframework-stubs >> requirements.txt 
+  ```
+
+- Add MyPy config file `mypy.init`
+
+  ```init
+  [mypy]
+  plugins = mypy_django_plugin.main
+  exclude = migrations|tests
+
+  [mypy.plugins.django-stubs]
+  django_settings_module = "<inner-porject-name>.settings"
+  ```
+
+- Note:- config file [doc](https://mypy.readthedocs.io/en/latest/config_file.html)
+
+- Run mypy type checking
+
+  ```sh
+  mypy .
+  ```
