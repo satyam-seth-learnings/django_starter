@@ -90,3 +90,26 @@
   ```sh
   python3 manage.py test
   ```
+
+7. Setup DRF(Django Rest Framework)
+
+- Install DRF package
+
+  ```sh
+  pip install djangorestframework
+  ```
+
+- Add installed DRF package to requirements file
+
+  ```sh
+  pip freeze | grep djangorestframework >> requirements.txt 
+  ```
+
+- Install DRF app in project setting
+
+  ```python
+  INSTALLED_APPS = [
+    ...,
+    'rest_framework',
+  ]
+  ```
