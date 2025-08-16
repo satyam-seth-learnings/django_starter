@@ -1087,3 +1087,21 @@ python3 manage.py test
   ```sh
   copy .githooks\pre-push .git\hooks\pre-push
   ```
+
+15. Setup VS Code test runner
+
+- Add manage.py path variable in `.env` file
+
+  ```env
+  MANAGE_PY_PATH=manage.py
+  ```
+
+- Configure VS Code to for test runner in `.vscode/settings.json`
+
+  ```json
+  {
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": ["-p", "*test*.py"]
+  }
+  ```
