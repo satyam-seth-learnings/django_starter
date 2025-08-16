@@ -968,3 +968,108 @@ python3 manage.py test
   ```
 
 - Install VS Code pylint extension [`ms-python.pylint`](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
+
+13. Setup pre commit
+
+- Install pre commit package
+
+  ```sh
+  pip install pre_commit
+  ```
+
+- Add installed pre commit package to requirements file
+
+  ```sh
+  pip freeze | grep pre_commit >> requirements.txt
+  ```
+
+- Add pre commit config file `.pre-commit-config.yaml`
+
+  ```yaml
+  repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v2.3.0
+      hooks:
+        - id: check-yaml
+        - id: end-of-file-fixer
+        - id: trailing-whitespace
+  ```
+
+- Add pre commit config for black in `.pre-commit-config.yaml`
+
+  ```yaml
+  repos:
+    - repo: https://github.com/psf/black
+      rev: 25.1.0
+      hooks:
+        - id: black
+          name: black to format python code
+  ```
+
+- Add pre commit config for isort in `.pre-commit-config.yaml`
+
+  ```yaml
+  repos:
+    - repo: https://github.com/pycqa/isort
+      rev: 6.0.1
+      hooks:
+        - id: isort
+          name: isort to sort imports
+          args:
+            - --profile
+            - black
+            - --verbose
+            - --skip-glob
+            - "**/migrations/*.py"
+  ```
+
+- Add pre commit config for mypy in `.pre-commit-config.yaml`
+
+  ```yaml
+  repos:
+    - repo: https://github.com/pre-commit/mirrors-mypy
+      rev: v1.17.0
+      hooks:
+        - id: mypy
+          name: mypy to check types
+          additional_dependencies:
+            - django-jazzmin==3.0.1
+            - django-stubs==5.2.2
+            - djangorestframework==3.16.0
+            - djangorestframework-stubs==3.16.1
+          args: ["--config-file=mypy.ini"]
+  ```
+
+- Add pre commit config for pylint in `.pre-commit-config.yaml`
+
+  ```yaml
+  repos:
+    - repo: https://github.com/pycqa/pylint
+      rev: v3.3.7
+      hooks:
+        - id: pylint
+          name: pylint to check code quality
+          entry: pylint
+          language: python
+          types: [python]
+          args: ["--rcfile=.pylintrc"]
+          additional_dependencies:
+            - django-jazzmin==3.0.1
+            - Django==5.2.4
+            - pylint-django==2.6.1
+            - djangorestframework==3.16.0
+  ```
+
+- Install pre commit dependencies
+
+  ```sh
+  pre-commit install
+  ```
+
+- Run pre-commit hooks manually
+
+  ```sh
+  pre-commit run --all-files
+  ```
+
+- Note:- pre commit official [doc](https://pre-commit.com/)
