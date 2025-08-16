@@ -1,5 +1,3 @@
-from datetime import date
-
 from django.test import TestCase
 
 from .models import Student
@@ -8,6 +6,8 @@ from .models import Student
 
 
 class StudentModelTest(TestCase):
+    """Student model test"""
+
     def setUp(self):
         self.student = Student.objects.create(
             first_name="John",
