@@ -56,7 +56,7 @@
 
 4. Setup Django app
 
-- Start Django app 
+- Start Django app
 
   ```sh
   python3 manage.py startapp <app-name>
@@ -87,9 +87,9 @@
 
 6. Run unit tests
 
-  ```sh
-  python3 manage.py test
-  ```
+```sh
+python3 manage.py test
+```
 
 7. Setup DRF(Django Rest Framework)
 
@@ -102,7 +102,7 @@
 - Add installed DRF package to requirements file
 
   ```sh
-  pip freeze | grep djangorestframework >> requirements.txt 
+  pip freeze | grep djangorestframework >> requirements.txt
   ```
 
 - Install DRF app in project setting
@@ -125,7 +125,7 @@
 - Add installed Coverage package to requirements file
 
   ```sh
-  pip freeze | grep coverage >> requirements.txt 
+  pip freeze | grep coverage >> requirements.txt
   ```
 
 - Run tests with coverage
@@ -157,7 +157,7 @@
 - Add installed mypy package to requirements file
 
   ```sh
-  pip freeze | grep mypy== >> requirements.txt 
+  pip freeze | grep mypy== >> requirements.txt
   ```
 
 - Install django stubs package
@@ -169,7 +169,7 @@
 - Add installed django stubs package to requirements file
 
   ```sh
-  pip freeze | grep django-stubs== >> requirements.txt 
+  pip freeze | grep django-stubs== >> requirements.txt
   ```
 
 - Install drf stubs package
@@ -181,7 +181,7 @@
 - Add installed drf stubs package to requirements file
 
   ```sh
-  pip freeze | grep djangorestframework-stubs >> requirements.txt 
+  pip freeze | grep djangorestframework-stubs >> requirements.txt
   ```
 
 - Add MyPy config file `mypy.init`
@@ -214,7 +214,7 @@
 - Add installed black package to requirements file
 
   ```sh
-  pip freeze | grep black >> requirements.txt 
+  pip freeze | grep black >> requirements.txt
   ```
 
 - Add black config in `puproject.toml` file
@@ -226,8 +226,62 @@
 
 - Note:- black official [doc](https://black.readthedocs.io/en/stable/getting_started.html)
 
+- Install VS Code Black extension [`ms-python.black-formatter`](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
+
+- Configure VS Code python default formatter to black in `.vscode/settings.json` file
+
+  ```json
+  {
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    }
+  }
+  ```
+
 - Fix formatting using black
 
   ```sh
   black .
+  ```
+
+11. Setup isort
+
+- Install isort package
+
+  ```sh
+  pip install isort
+  ```
+
+- Add installed isort package to requirements file
+
+  ```sh
+  pip freeze | grep isort >> requirements.txt
+  ```
+
+- Add MyPy config file `isort.cfg`
+
+  ```cfg
+  [settings]
+  profile = black
+  verbose = true
+  skip_glob = **/migrations/*.py
+  ```
+
+- Install VS Code Black extension [`ms-python.isort`](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
+
+- Configure VS Code to organize python imports using isort in `.vscode/settings.json`
+
+  ```json
+  {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "isort.args": ["--profile", "black", "--skip-glob", "*/migrations/*"]
+  }
+  ```
+
+- Sort imports using isort
+
+  ```sh
+  isort .
   ```
