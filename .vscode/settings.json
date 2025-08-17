@@ -1,22 +1,19 @@
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.organizeImports": true,
-    },
-    "isort.args": [
-        "skip_glob",
-        "*/migrations/*",
-    ],
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    },
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": [
-        "--load-plugins",
-        "pylint_django",
-        "django-settings-module=django_starter.settings",
-    ],
-    "python.linting.mypyEnabled": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.unusedImports": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.rulers": [100],
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "isort.args": ["--profile", "black", "--skip-glob", "*/migrations/*"],
+  "python.testing.unittestEnabled": true,
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestArgs": ["-p", "*test*.py"]
 }
