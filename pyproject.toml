@@ -1,2 +1,42 @@
+[project]
+name = "otc-backend"
+version = "0.1.0"
+description = "Over-the-Counter Backend"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django==6.0",
+    "django-cors-headers==4.6.0",
+    "django-filter==25.2",
+    "django-jazzmin==3.0.1",
+    "django-redis==6.0.0",
+    "djangorestframework==3.16.0",
+    "drf-spectacular==0.29.0",
+    "drf-spectacular-sidecar==2025.12.1",
+    "python-decouple==3.8",
+    "python-json-logger==4.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "black==25.1.0",
+    "colorlog==6.10.1",
+    "coverage==7.9.2",
+    "decouple-types==1.0.2",
+    "django-extensions==4.1",
+    "django-filter-stubs==0.1.3",
+    "django-stubs==5.2.2",
+    "djangorestframework-stubs==3.16.1",
+    "isort==6.0.1",
+    "mypy==1.17.0",
+    "pre-commit==4.2.0",
+    "pylint==3.3.7",
+    "pylint-django==2.6.1",
+]
+
 [tool.black]
 force-exclude = "/migrations/"
+
+[tool.isort]
+profile = "black"
+skip_glob = "**/migrations/*.py"

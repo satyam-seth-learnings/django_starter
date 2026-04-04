@@ -25,21 +25,35 @@ SECRET_KEY = "django-insecure-2l@ji^toi5&60%f!if3-9bkx1y(f)f+*1vs0(q3l2y1-&i4jv%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTSS: list[str] = []
+ALLOWED_HOSTS: list[str] = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Admin UI
+    "jazzmin",
+    # Django core apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third-party apps
     "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+    # Custom apps
     "core",
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        # Third-party (dev)
+        "django_extensions",
+    ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -122,3 +136,120 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Logging
+LOG_DIR = BASE_DIR / "logs"
+LOG_DIR.mkdir(exist_ok=True)
+LOG_LEVEL = "DEBUG" if DEBUG else "INFO"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "colored": {
+            "()": "colorlog.ColoredFormatter",
+            "format": (
+                "%(log_color)s[%(levelname)s]%(reset)s " "%(name)s :: %(message)s"
+            ),
+            "log_colors": {
+                "DEBUG": "cyan",
+                "INFO": "green",
+                "WARNING": "yellow",
+                "ERROR": "red",
+                "CRITICAL": "bold_red",
+            },
+        },
+        # Human readable
+        "readable": {
+            "format": ("[{asctime}] {levelname} " "{name} :: {message}"),
+            "style": "{",
+        },
+        # JSON (for Kibana / Loki)
+        "json": {
+            "()": "pythonjsonlogger.jsonlogger.JsonFormatter",
+            "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+        },
+    },
+    "handlers": {
+        # Console (dev only)
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "colored",
+            "level": "DEBUG",
+        },
+        # Human readable log file
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOG_DIR / "app.log",
+            "maxBytes": 10 * 1024 * 1024,  # 10MB
+            "backupCount": 5,
+            "formatter": "readable",
+            "level": LOG_LEVEL,
+        },
+        # JSON log file (ELK / Loki ingestion)
+        "json_file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOG_DIR / "app.json.log",
+            "maxBytes": 10 * 1024 * 1024,
+            "backupCount": 5,
+            "formatter": "json",
+            "level": LOG_LEVEL,
+        },
+        # TODO: mails admin for production with require_debug_false filter
+    },
+    # Global logger
+    "root": {
+        "handlers": (
+            ["console", "file", "json_file"] if DEBUG else ["file", "json_file"]
+        ),
+        "level": LOG_LEVEL,
+    },
+    # Django errors (5xx)
+    "loggers": {
+        "django.request": {
+            "handlers": ["file", "json_file", "console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}
+
+
+# Jazzmin Settings
+# https://django-jazzmin.readthedocs.io/configuration/
+
+JAZZMIN_SETTINGS = {
+    "site_header": "Oregama OTC Admin",
+    "site_brand": "Oregama OTC Admin",
+    "site_title": "Oregama OTC Admin",
+    "welcome_sign": "Welcome to the Oregama OTC Admin",
+    "copyright": "Hi Cypher",
+}
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+}
+
+
+# DRF Settings
+# https://www.django-rest-framework.org/api-guide/settings/
+
+REST_FRAMEWORK: dict[str, str | list[str]] = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# disable browseable api for not dev envs
+if not DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
+        "rest_framework.renderers.JSONRenderer",
+    ]
+
+
+# DRF Spectacular Settings
+# https://drf-spectacular.readthedocs.io/en/latest/settings.html
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Oregama OTC API",
+    "DESCRIPTION": "Delivery System",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
